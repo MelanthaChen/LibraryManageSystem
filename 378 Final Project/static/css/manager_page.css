@@ -1,0 +1,118 @@
+/* styles.css */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+}
+
+/* Create a header to contain the sign-out button and add some branding color */
+.header {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Style the sign-out button to fit within the header */
+.sign-out-form button {
+    padding: 10px 20px;
+    background-color: #f44336; /* Red color for sign out to indicate a clear action */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.sign-out-form button:hover {
+    background-color: #c0392b; /* Darker shade of red for hover state */
+}
+
+button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 2px 2px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Style the main heading */
+h1 {
+    color: #333;
+    text-align: center;
+    padding-top: 50px; /* Add padding to the top to push content down below header */
+}
+
+/* Style the introductory paragraph */
+p {
+    text-align: center;
+    font-size: 18px;
+    padding: 10px;
+    color: #555;
+}
+
+/* Container for the sections */
+section {
+    margin: auto;
+    padding: 20px;
+    max-width: 800px; /* Max width for readability */
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Simple shadow for depth */
+    border-radius: 5px;
+    margin-bottom: 20px; /* Space between sections */
+}
+
+/* Style the section headings */
+section h2 {
+    color: #333;
+    border-bottom: 2px solid #e7e7e7;
+    padding-bottom: 10px;
+}
+
+/* Style the buttons within the sections */
+section button {
+    width: 100%;
+    padding: 15px;
+    margin-top: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+section button:hover {
+    background-color: #45a049;
+}
+
+/* Style the search input */
+input[type="text"] {
+    width: calc(100% - 22px); /* 100% width minus padding and border */
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input[type="number"] {
+    width: calc(100% - 22px); /* 100% width minus padding and border */
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}

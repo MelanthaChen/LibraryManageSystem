@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Results</title>
+    <style>
+     table{
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid #ddd;
+        margin-top: 20px;
+     }
+     th, td{
+        padding:12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd
+
+     }
+     th{
+        background-color: #f2f2f2;
+        color: #333;
+     }
+
+     .search-section {
+        margin-top: 20px;
+        text-align:center;
+     }
+    </style>
+</head>
+<body>
+    <h1>Search Results</h1>
+    <table>
+        <tr>
+            <th>BookID</th>
+            <th>Title</th>
+            <th>Authors</th>
+            <th>ISBN</th>
+            <th>Year</th>
+            <th>Category</th>
+            <th>Availability</th>
+            <th>Borrow</th>
+        </tr>
+        {% for book in results %}
+        <tr>
+            <td>{{ book[0]}}</td>
+            <td>{{ book[1]}}</td>
+            <td>{{ book[2]}}</td>
+            <td>{{ book[3]}}</td>
+            <td>{{ book[4]}}</td>
+            <td>{{ book[5]}}</td>
+            <td>{{ book[6]}}</td>
+            <td>
+                <form action="/borrow" method="post">
+                    <input type="hidden" name="BookID" value="{{ book[0] }}">
+                    <input type="hidden" name="Title" value="{{ book [1]}}">
+                    {% if book[6] == 'Yes' %}
+                        <button type="submit">Borrow</button>
+                    {% else %}
+                        <button disabled="disabled">Unavailable</button>
+                    {% endif %}
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+   <form action="/previous">
+    <button type="submit">Return</button>
+    </form>
+
+
+</body>
+</html>

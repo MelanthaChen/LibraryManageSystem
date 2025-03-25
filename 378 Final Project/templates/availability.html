@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Availability</title>
+    <style>
+     table{
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid #ddd;
+        margin-top: 20px;
+     }
+     th, td{
+        padding:12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd
+
+     }
+     th{
+        background-color: #f2f2f2;
+        color: #333;
+     }
+
+     .search-section {
+        margin-top: 20px;
+        text-align:center;
+     }
+    </style>
+</head>
+<body>
+    <h1>Book Availability</h1>
+
+    <h2>Generate a list of books based on their availability</h2>
+    <p>Select availability type:</p>
+   <section>
+    <form action="/availabilityType" method = "get">
+      <select id="select">
+         <option value ="All">All</option>
+         <option value="Yes">Yes</option>
+         <option value="No">No</option>
+     </select>
+     <button type="submit" onclick="getValue()">Submit</button>
+     <p class = "output"></p>
+     <input type="hidden" id="availability_type" name="output" value="">
+    </form>
+   </section>
+
+   <table>
+      <tr>
+          <th>BookID</th>
+          <th>Title</th>
+          <th>Authors</th>
+          <th>ISBN</th>
+          <th>Year</th>
+          <th>Category</th>
+          <th>Availability</th>
+      </tr>
+      {% for book in results %}
+      <tr>
+          <td>{{ book[0]}}</td>
+          <td>{{ book[1]}}</td>
+          <td>{{ book[2]}}</td>
+          <td>{{ book[3]}}</td>
+          <td>{{ book[4]}}</td>
+          <td>{{ book[5]}}</td>
+          <td>{{ book[6]}}</td>
+      </tr>
+      {% endfor %}
+  </table>
+
+<script type="text/javascript">
+function getValue(){
+   var selectElement = document.querySelector('#select');
+   var output = selectElement.value;
+   document.querySelector('.output').textContent= "Selected value:" + output;
+   document.getElementById('availability_type').value = output;
+}
+</script>
+
+<form action="/previous">
+   <button type="submit">Return</button>
+</form>
+
+
+
+</body>
+</html>

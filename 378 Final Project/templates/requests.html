@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Approve Requests</title>
+    <style>
+     table{
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid #ddd;
+        margin-top: 20px;
+     }
+     th, td{
+        padding:12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd
+
+     }
+     th{
+        background-color: #f2f2f2;
+        color: #333;
+     }
+
+     .search-section {
+        margin-top: 20px;
+        text-align:center;
+     }
+    </style>
+</head>
+<body>
+    <h2>Approve a list of pending transaction requests </h2>
+   <form action="/decision" method="post">
+
+  <table id="table">
+      <tr>
+          <th>Request_ID</th>
+          <th>User ID</th>
+          <th>Book Name</th>
+          <th>Book ID</th>
+          <th>Select</th>
+      </tr>
+      {% for book in results %}
+      <tr>
+          <td>{{ book[0]}}</td>
+          <td>{{ book[2]}}</td>
+          <td>{{ book[1]}}</td>
+          <td>{{ book[3]}}</td>
+          <td><select class="decision">
+            <option value ="pending">Pending</option>
+            <option value="approve">Approve</option>
+            <option value="deny">Deny</option>  
+         </select></td>
+      </tr>
+      {% endfor %}
+  </table>
+  <button type="submit" onclick = "getValues()">Submit</button>
+  <p class = "result"></p>
+  <input type="hidden" id="decided" name="result" value="">
+</form> 
+
+<script type="text/javascript">
+    function getValues(){
+       var selectElements = document.querySelectorAll('.decision');
+       var result = [];
+       var approved = [];
+       var denied = [];
+       selectElements.forEach(function(selectElement){
+         var selectedOption = selectElement.value;
+            var row = selectElement.closest('tr')
+            var requestID = row.querySelector('td:first-child').textContent;
+            var userID = row.querySelector('td:nth-child(2)').textContent;
+            var Title = row.querySelector('td:nth-child(3)').textContent;
+            var bookID = row.querySelector('td:nth-child(4)').textContent;
+            if (selectedOption === "approve"){
+               approved.push([requestID, userID, Title, bookID]);}
+            else if (selectedOption === "deny"){
+               denied.push([requestID, userID, Title, bookID])
+            }
+         });
+       result.push(approved);
+       result.push(denied);
+       document.querySelector('.result').textContent= "Selected value:" + JSON.stringify(result);
+       document.getElementById('decided').value = JSON.stringify(result);
+    }
+   </script>
+
+ <br>
+ <form action="/previous">
+    <button type="submit">Return</button>
+ </form>
+
+
+</body>
+</html>

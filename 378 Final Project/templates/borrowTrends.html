@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Borrowing Trends</title>
+    <style>
+     table{
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid #ddd;
+        margin-top: 20px;
+     }
+     th, td{
+        padding:12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd
+
+     }
+     th{
+        background-color: #f2f2f2;
+        color: #333;
+     }
+
+     .search-section {
+        margin-top: 20px;
+        text-align:center;
+     }
+    </style>
+</head>
+<body>
+    <h1>Borrowing Trends</h1>
+
+    <section>
+    <h2>Here is a report to see which books are the most borrowed</h2>
+    </section>
+
+   <table>
+      <tr>
+          <th>BookID</th>
+          <th>Title</th>
+          <th>Count</th>
+      </tr>
+      {% for book in results %}
+      <tr>
+          <td>{{ book[0]}}</td>
+          <td>{{ book[1]}}</td>
+          <td>{{ book[2]}}</td>
+
+      </tr>
+      {% endfor %}
+  </table>
+
+
+
+<form action="/previous">
+   <button type="submit">Return</button>
+</form>
+
+
+
+</body>
+</html>

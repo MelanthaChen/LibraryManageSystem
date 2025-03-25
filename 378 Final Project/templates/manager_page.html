@@ -1,0 +1,94 @@
+<!-- templates/librarian_page.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Librarian Dashboard</title>
+    <link rel="stylesheet" href="../static/css/manager_page.css">
+</head>
+<body>
+    <form action="/sign_out" class="sign-out-form">
+        <button type="submit">Sign out</button>
+    </form>
+
+    <h1>Welcome, {{ name }}!</h1>
+    <p>Here, you can manage the library's books, including adding new books, updating information, and managing borrowings and returns.</p>
+
+    <section>
+        <h2>Search Books</h2>
+        <form action="/search_books" method="get">
+            <input type="text" name="query" id = "query" placeholder="Title, Author, Category">
+            <button type="submit">Search</button>
+        </form>
+    </section>
+
+    <section>
+        <h2>Add New Book</h2>
+        <form action="/add_book" method="post">
+            <input type="text" name="title" placeholder="Title" id = 'title' required>
+            <input type="text" name="author" placeholder="Author" id = 'author' required>
+            <input type="text" name="category" placeholder="Category" id = 'category' required>
+            <input type="text" name="isbn" placeholder="ISBN" id = 'isbn' required>
+            <input type="number" name="year" placeholder="Year" id = 'year' required>
+            <button type="submit">Add Book</button>
+        </form>
+    </section>
+
+    <section>
+        <h2>Update a Book</h2>
+        <form action="/update_book" method="post">
+            <input type = "text" name="BookID" placeholder="Bookid" id = "BookID" required>
+            <input type="text" name="Title" placeholder="Title" id = 'Title'>
+            <input type="text" name="Authors" placeholder="Author" id = 'Authors'>
+            <input type="text" name="Category" placeholder="Category" id = 'Category' >
+            <input type="text" name="ISBN" placeholder="ISBN" id = 'ISBN' >
+            <input type="number" name="PublicationYear" placeholder="Year" id = 'PublicationYear' >
+            <input type="text" name = 'Availability' placeholder="Availability" id="Availability">
+            <button type="submit">Update</button>
+        </form>
+    </section>
+
+    <section>
+        <h2>Register new users</h2>
+        <form action = "/register" method="post">
+            <input type="text" name="name" placeholder="Name" id = 'name' required>
+            <input type="number" name="university_id" placeholder="University ID" id="university_id" required>
+            <input type="text" name="email" placeholder="Email" id = 'email' required>
+            <input type="text" name="department" placeholder="Department" id = 'department'>
+            <input type="text"  name="role" placeholder="Role" id="role" required>
+
+            <button type="submit">Register</button>
+        </form>
+
+        </form>
+    </section>
+
+    <section>
+        <h2>Approve Requests</h2>
+        <form action = "/requests">
+            <button type="submit">Pending Requests</button>
+        </form>
+    </section>
+
+    <section>
+        <h2>Generate Reports</h2>
+        <form action="/availability">
+            <button type= "submit"> Book Availability </button>
+        </form>
+    
+
+        <form action="/overdue">
+            <button type="submit">Overdue Books</button>
+        </form>
+
+        <form action = "/borrowTrends">
+            <button type="submit">Borrowing Trends</button>
+        </form>
+
+        <form action="/download_database" method="get">
+            <button type="submit">Download Current Database</button>
+        </form>
+
+    </section>
+</body>
+</html>

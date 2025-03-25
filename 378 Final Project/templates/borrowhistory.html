@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Overdue Books</title>
+    <style>
+     table{
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid #ddd;
+        margin-top: 20px;
+     }
+     th, td{
+        padding:12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd
+
+     }
+     th{
+        background-color: #f2f2f2;
+        color: #333;
+     }
+
+     .search-section {
+        margin-top: 20px;
+        text-align:center;
+     }
+    </style>
+</head>
+<body>
+    <h1>Borrowing History</h1>
+
+    <section>
+    <h2>Generate a report to see all of your library transactions</h2>
+    <h3>Select Transaction Type:</h3>
+    <form action="/TransactionType" method = "get">
+        <select id="select">
+           <option value="all">All</option>
+           <option value ="pending">Pending</option>
+           <option value="completed">Completed</option>
+       </select>
+       <button type="submit" onclick="getValue()">Generate</button>
+       <p class = "output"></p>
+       <input type="hidden" id="transaction_type" name="output" value="">
+      </form>
+    </section>
+
+    <table>
+        <tr>
+            <th>Transaction ID</th>
+            <th>Tile</th>
+            <th>Book ID</th>
+            <th>Borrowed Date</th>
+            <th>Returned Date</th>
+            <th>Return</th>
+        </tr>
+        {% for book in results %}
+        <tr>
+            <td>{{ book[0] }}</td>
+            <td>{{ book[2] }}</td>
+            <td>{{ book[1] }}</td>
+            <td>{{ book[5] }}</td>
+            <td>{{ book[6] or NULL }}</td>
+            <td>
+                <form action="/return" method="post">
+                    <input type="hidden" name="transaction_id" id = "transaction_id" value="{{ book[0] }}">
+                    {% if book[6] == '' or book[6] is none %}
+                        <button type="submit">Return</button>
+                    {% else %}
+                        <button disabled="disabled">Returned</button>
+                    {% endif %}
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>    
+
+      
+    <script type="text/javascript">
+        function getValue(){
+           var selectElement = document.querySelector('#select');
+           var output = selectElement.value;
+           document.querySelector('.output').textContent= "Selected value:" + output;
+           document.getElementById('transaction_type').value = output;
+        }
+       </script>
+
+  <form action="/previous">
+    <button type="submit">Return</button>
+    </form>
+
+
+</body>
+</html>

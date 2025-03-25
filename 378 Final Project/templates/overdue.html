@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Overdue Books</title>
+    <style>
+     table{
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid #ddd;
+        margin-top: 20px;
+     }
+     th, td{
+        padding:12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd
+
+     }
+     th{
+        background-color: #f2f2f2;
+        color: #333;
+     }
+
+     .search-section {
+        margin-top: 20px;
+        text-align:center;
+     }
+    </style>
+</head>
+<body>
+    <h1>Overdue Books</h1>
+
+    <section>
+    <h2>Generate a report to see all the overdue books</h2>
+    </section>
+
+   <table>
+      <tr>
+          <th>Transaction ID</th>
+          <th>Book ID</th>
+          <th>User ID</th>
+          <th>Librarian ID</th>
+          <th>Borrowed Date</th>
+
+      </tr>
+      {% for book in results %}
+      <tr>
+          <td>{{ book[0]}}</td>
+          <td>{{ book[1]}}</td>
+          <td>{{ book[2]}}</td>
+          <td>{{ book[3]}}</td>
+          <td>{{ book[4]}}</td>
+
+
+      </tr>
+      {% endfor %}
+  </table>
+
+
+
+<form action="/previous">
+   <button type="submit">Return</button>
+</form>
+
+
+
+
+</body>
+</html>
